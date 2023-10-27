@@ -1,0 +1,49 @@
+.App{
+  font-family: sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.movie-container{
+  width: 350px;
+}
+.movie-poster{
+  object-fit:cover;
+  width:100%;
+  height:560px ;
+}
+.movie-specs{
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.movie-name{
+  margin-top: 0;
+  font-size: 24px;
+}
+.movie-rating{
+  font-size: 20px;
+  margin-top: 0;
+}
+.movie-summary{
+  margin-top: 0;
+}
+.movie-render{
+  /* display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-around; */
+  display: grid;
+  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  gap: 20px;
+
+}
+.movie-form-area{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+  
+}
