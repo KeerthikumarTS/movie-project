@@ -1,15 +1,12 @@
-import { useState } from "react";
 import "./App.css";
+import { Movierender } from "./Movierender";
+import { Routes, Route, Link } from "react-router-dom";
+import {Addcolor} from "./Addcolor";
+import { Addmovie } from "./Addmovie";
+import { useState } from "react";
 
 export default function App() {
-  return (
-    <div className="App">
-      <Movierender/>
-    </div>
-  );
-}
-function Movierender(){
-  const [moviedata,setmoviedata] = useState([
+  const [moviedata, setmoviedata] = useState([
     {
       "name": "Vikram",
       "poster": "https://m.media-amazon.com/images/M/MV5BMmJhYTYxMGEtNjQ5NS00MWZiLWEwN2ItYjJmMWE2YTU1YWYxXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
@@ -76,75 +73,52 @@ function Movierender(){
       "summary": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA\\n pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team\\n of researchers, to find a new planet for humans.",
       "rating": 8.8
     }
-  ])
-  
-  const[name,setname] = useState("")
-  const[poster,setposter]= useState("")
-  const[rating,setrating]= useState("")
-  const[summary,setsummary]= useState("")
+  ]);
+  return (
+    <div className="App">
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/movie">Movie</Link>
+        </li>
+        <li>
+          <Link to="/color-game">Add color</Link>
+        </li>
+        <li>
+          <Link to="/add-movie">Add movie</Link>
+        </li>
+      </ul>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie" element={<Movierender moviedata={moviedata}/>} />
+        <Route path="/color-game" element={<Addcolor/>} />
+        <Route path="/movie/:id" element={<Moviedetails/>} />
+        <Route path="/add-movie" element={<Addmovie moviedata={moviedata} setmoviedata={setmoviedata}/>} />
+        <Route path="*" element={<Notfound/>} />
+      </Routes>
+    </div>
+  );
+}
+function Home(){
   return(
     <div>
-      <div className="movie-form-area">
-        <input onChange={(event)=>setname(event.target.value)} placeholder="name"/>
-        <input onChange={(event)=>setposter(event.target.value)} placeholder="poster"/>
-        <input onChange={(event)=>setrating(event.target.value)} placeholder="rating"/>
-        <input onChange={(event)=>setsummary(event.target.value)} placeholder="summary"/>
-        <button onClick={()=>{
-          const newmovie={
-            name:name,
-            poster:poster,
-            rating:rating,
-            summary:summary,
-          };
-          setmoviedata([...moviedata,newmovie])
-        }
-        
-        }>Add Movie</button>
-      </div>
-      <div className="movie-render">
-      {moviedata.map((mv)=>(
-        <Movielist movie={mv}  />
-      ))}
-    </div>
+      <h1>Welcome to the movie App🙏</h1>
     </div>
   )
 }
-function Counter(){
-  const[Like,setLike]=useState(0)
-  const[Dislike,setDislike]=useState(0)
+function Notfound(){
   return(
     <div>
-      <button onClick={()=>setLike(Like+1)}>👍{Like}</button>
-      <button onClick={()=>setDislike(Dislike+1)}>👎{Dislike}</button>
+      <h1>404 Not found</h1>
     </div>
-  )  
-  }
-
-function Movielist({movie}){
-  //conditional Styling, ? : -> Ternary Operator
-   const styles ={
-    color:movie.rating>8.5 ? "teal":"red"
-   }
-   //managed state => show, Example:appying the brake in car
-   const [show,setShow] = useState(true);
-   //derived state => parastyles, its the reflection of managed state. Example : Speedometer decreses after applying the brake.
-   const parastyles = {
-    display:show ? "block":"none"
-   }
+  )
+}
+function Moviedetails(){
   return(
-    <div className="movie-container">
-      <img src={movie.poster} alt={movie.name} className="movie-poster" />
-      <div className="movie-specs">
-      <h2 className="movie-name">{movie.name}</h2>
-      <p style={styles} className="movie-rating">⭐{movie.rating}</p>
-      </div>
-      <button onClick={()=>setShow(!show)}>Toggle Summary</button>
-      {/* conditional Styling */}
-      {/* <p style={parastyles} className="movie-summary">{movie.summary}</p> */}
-      {/* Conditional Rendering -> Removes from DOM */}
-      {show ? <p className="movie-summary">{movie.summary}</p> : null}
-      <Counter/>
+    <div>
+      <h1>Movie Details</h1>
     </div>
-
   )
 }
