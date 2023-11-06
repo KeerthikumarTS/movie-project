@@ -35,6 +35,7 @@ export default function App() {
           <Button onClick={()=>navigate("/movie")} color="inherit">Movies</Button>
           <Button onClick={()=>navigate("/color-game")} color="inherit">Add-color</Button>
           <Button onClick={()=>navigate("/add-movie")} color="inherit">Add-movie</Button>
+          <Button onClick={()=>navigate("/basic-form")} color="inherit">Basic-form</Button>
           <Button startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />} 
           onClick={()=>setmode(mode=== "light"?"dark":"light")}color="inherit">
             {mode==="light"?"dark":"light"}-mode
