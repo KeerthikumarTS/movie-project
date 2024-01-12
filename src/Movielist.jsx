@@ -10,7 +10,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from "react-router-dom";
 
 
-export function Movielist({ movie,deleteButton}) {
+export function Movielist({ movie,deleteButton,id}) {
   //conditional Styling, ? : -> Ternary Operator
   const styles = {
     color: movie.rating > 8.5 ? "teal" : "red"
